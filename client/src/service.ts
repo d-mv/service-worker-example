@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // public key should be from .env
-const oldKey =
-  "BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw";
+// const oldKey =
+// "BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw";
 const publicKey =
   "BDobnNEiUBJkBUeIYLW3JDyKsCQRHPLYnVqr11XJl5DWPgZhSF0q5FDygK1YEjBTOTiN_gLyEbMWnRVAvKfsi78";
 
@@ -19,9 +19,6 @@ const urlBase64ToUint8Array = (key: string) => {
   return outputArray;
 };
 
-// const vapidPublicKey = "<Your Public Key from generateVAPIDKeys()>";
-// const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
-
 // main function
 export const run = async () => {
   // check if serviceWorker functionality is supporter by the browser(navigator)
@@ -36,19 +33,22 @@ export const run = async () => {
       );
       console.log("Registered service worker");
       console.log("Registering push");
+
+      //  unsubscribe from old subscription, should not be needed
       const current = await registration.pushManager.getSubscription();
 
       if (current) {
         const remove = await current.unsubscribe();
         console.log(remove);
       }
-      console.log(current);
 
+      // make object for subscription
       const subObject = {
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicKey)
       };
-      console.log(subObject)
+      // show object
+      console.log(subObject);
       const subscription = await registration.pushManager.subscribe(subObject);
       console.log("Registered push");
 
@@ -67,23 +67,7 @@ export const run = async () => {
     } catch (e) {
       // display error from server
       console.log(e);
-      console.log(e.response.data);
+      if (e.response && e.response.data) console.log(e.response.data);
     }
   }
 };
-
-// Boilerplate borrowed from https://www.npmjs.com/package/web-push#using-vapid-key-for-applicationserverkey
-// function urlBase64ToUint8Array(base64String: any) {
-//   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-//   const base64 = (base64String + padding)
-//     .replace(/\-/g, "+")
-//     .replace(/_/g, "/");
-
-//   const rawData = window.atob(base64);
-//   const outputArray = new Uint8Array(rawData.length);
-
-//   for (let i = 0; i < rawData.length; ++i) {
-//     outputArray[i] = rawData.charCodeAt(i);
-//   }
-//   return outputArray;
-// }
