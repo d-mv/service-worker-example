@@ -20,7 +20,10 @@
     "@types/mongoose": "^5.5.16"
   },
   "scripts": {
-    "dev": "yarn run build:live",
-    "start": "node public/index.js"
+        "dev": "yarn run build:live",
+    "start": "node public/index.js",
+    "build": "rm -rf dist && tsc -p . --outDir ./public",
+    "build:live": "nodemon --watch '**/**/*.ts' --exec 'ts-node' src/index.ts"
+
   }
 }
