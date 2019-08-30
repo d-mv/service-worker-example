@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es6",
+    "module": "commonjs",
+    "baseUrl": "./",
+    "outDir": "build",
+    "rootDir": "src",
+    "removeComments": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "lib": [
+      "es2020"
+    ]
+  },
+  "exclude": [
+    "src/tests",
+    "node_modules",
+    "public",
+    "client"
+  ],
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true
+}
