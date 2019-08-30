@@ -21,6 +21,6 @@
   },
   "scripts": {
     "dev": "yarn run build:live",
-    "start": "node public/index.js",
+    "start": "node public/index.js"
   }
 }
