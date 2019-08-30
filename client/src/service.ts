@@ -54,11 +54,15 @@ export const run = async () => {
 
       console.log("Sending push");
       // send request to server
-      await axios.post("http://localhost:3000/api/subscribe", subscription, {
-        headers: {
-          "content-type": "application/json"
+      await axios.post(
+        "https://secure-db-service-worker.herokuapp.com/api/subscribe",
+        subscription,
+        {
+          headers: {
+            "content-type": "application/json"
+          }
         }
-      });
+      );
       console.log("Sent push to server");
     } catch (e) {
       // display error from server
