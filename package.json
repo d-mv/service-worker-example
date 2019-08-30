@@ -22,8 +22,5 @@
   "scripts": {
     "dev": "yarn run build:live",
     "start": "node public/index.js",
-    "tsc": "tsc",
-    "build": "rm -rf dist && yarn run tsc -p . --outDir ./public",
-    "build:live": "nodemon --watch '**/**/*.ts' --exec 'ts-node' src/index.ts"
   }
 }
