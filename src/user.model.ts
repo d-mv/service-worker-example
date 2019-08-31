@@ -1,8 +1,15 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import mongoose from 'mongoose'
 
-const dotEnv = dotenv.config();
-const secret: any = process.env.SECRET;
+export type UserType = {
+  subscriptionObject: {
+    endpoint: string;
+    expirationTime: string;
+    keys: {
+      p256dh: string;
+      auth: string;
+    };
+  };
+}
 
 const UserSchema = new mongoose.Schema({
   subscriptionObject: {
@@ -22,8 +29,8 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-});
+})
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema)
 
-module.exports = User;
+export default User

@@ -1,8 +1,9 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 
-dotenv.config();
-const dbUrl: any = process.env.MONGO_URL;
+dotenv.config()
+const dbUrl: string =
+  process.env.MONGO_URL || 'mongodb://localhost:27017/secure'
 
 mongoose
   .connect(dbUrl, {
@@ -10,8 +11,8 @@ mongoose
     useCreateIndex: true
   })
   .then(() => {
-    console.log("connected to database");
+    console.log('connected to database')
   })
   .catch(() => {
-    console.log("failed to connect to database");
-  });
+    console.log('failed to connect to database')
+  })

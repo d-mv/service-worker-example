@@ -4,9 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const dotEnv = dotenv_1.default.config();
-const secret = process.env.SECRET;
 const UserSchema = new mongoose_1.default.Schema({
     subscriptionObject: {
         endpoint: {
@@ -26,6 +23,6 @@ const UserSchema = new mongoose_1.default.Schema({
         default: Date.now
     }
 });
-const User = mongoose_1.default.model("User", UserSchema);
-module.exports = User;
+const User = mongoose_1.default.model('User', UserSchema);
+exports.default = User;
 //# sourceMappingURL=user.model.js.map
